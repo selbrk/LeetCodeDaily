@@ -9,7 +9,6 @@ def to_char(value : int):
     return chr(97 + value)
 class Solution:
     def smallestFromLeaf(self, root: TreeNode) -> str:
-        umap = {i: chr(ord('a') + i) for i in range(26)}
         ans = ""
         bfs = deque([(root, to_char(root.val))])
         while bfs:
