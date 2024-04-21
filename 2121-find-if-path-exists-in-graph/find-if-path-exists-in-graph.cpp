@@ -1,38 +1,49 @@
 class Solution {
 public:
+    vector<int> p, sz;
+    
+    // finds the parent of the node
+    int find(int a){
+        if(a == p[a]) return a;
+        else return p[a] = find(p[a]);
+    }
+
+
+    // unites the given two components (actually nodes)
+    void unite(int a, int b){
+        a = find(a), b = find(b);
+        if(a != b){
+            // to make it somewhat balanced
+            // we add the smaller tree to the 
+            // bigger tree
+
+            if(sz[b] > sz[a]) 
+                swap(a, b); // swaps the pointers
+            
+            
+            p[b] = a;
+            sz[a] += sz[b];
+        }
+    }
+
+
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
         if(source == destination)
             return true;
         
+        p.resize(n);
+        sz.resize(n);
 
-        vector<int> adj[n];
-        vector<bool> vis(n, false);
-        int u, v;
-        for(int i = 0; i < edges.size(); i++) {
-            u = edges[i][0], v = edges[i][1];
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+        for(int i = 0; i < n; i++){
+            p[i] = i; // with all nodes being single, initially their parents are themselves
+            sz[i] = 1; // and the subtree is sized 1.
         }
 
-        queue<int> bfs;
-        bfs.push(source);
-        vis[source] = true;
-        int node;
-        while(!bfs.empty()) {
-            node = bfs.front();
-            bfs.pop();
-
-            for(int& nbr : adj[node]) {    
-                if(!vis[nbr]){
-                    vis[nbr] = true;
-                    bfs.push(nbr);
-                    if(nbr == destination)
-                        return true;
-                }
-            }
-        }
-
-        return false;
+        for(auto& edge : edges)
+            unite(edge[0], edge[1]);
+        
+        return find(source) == find(destination);
+        
 
         
     }
