@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int toInt(vector<int>& curr) {
+    int toInt(array<int,4>& curr) {
         int ans = 0;
         for(int i = 0; i < 4; i++) {
             ans *= 10;
@@ -15,19 +15,19 @@ public:
 
         
         unordered_set<int> vis, forbidden;
-        vector<int> temp;
+        array<int,4> temp;
 
         for(auto& s : deadends){
             temp = {s[0] -'0', s[1] -'0', s[2] -'0', s[3] -'0'};
             forbidden.insert(toInt(temp));
         }
         
-        queue<pair<int,vector<int>>> q;
+        queue<pair<int,array<int,4>>> q;
         q.push({0, {0,0,0,0}});
-        vector<int> targetArray = {target[0] - '0', target[1] - '0', target[2] -'0', target[3] - '0'};        
+        array<int,4> targetArray = {target[0] - '0', target[1] - '0', target[2] -'0', target[3] - '0'};        
 
         int current_level;
-        vector<int> current_state, next_state;
+        array<int, 4> current_state, next_state;
         while(!q.empty()) {
             current_level = q.front().first;
             current_state = q.front().second;
@@ -35,7 +35,7 @@ public:
 
             q.pop();
 
-            if(current_state == targetArray)
+            if(toInt(current_state) == toInt(targetArray))
                 return current_level;
             
             if(forbidden.count(toInt(current_state)))
