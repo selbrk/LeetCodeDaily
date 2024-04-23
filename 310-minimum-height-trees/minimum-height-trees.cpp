@@ -11,22 +11,22 @@ public:
 
         vector<int> deg(n);
 
-        int u, v, k, leaf;
+        int u, v, k, leaf, i;
         for(auto& edge : edges) {
             u = edge[0], v = edge[1];
             adj[u].push_back(v);
             adj[v].push_back(u);
-            deg[u]++;
-            deg[v]++;
+            ++deg[u];
+            ++deg[v];
         }
 
-        for(int i = 0; i < n; i++)
+        for(i = 0; i < n; i++)
             if(deg[i] == 1)
                 leaves.push(i);
         
         while(n > 2) {
             k = leaves.size();
-            for(int i = 0; i < k; i++) {
+            for(i = 0; i < k; i++) {
                 leaf = leaves.front(); leaves.pop(); n--;
                 for(int& nbr : adj[leaf]) {
                     if(--deg[nbr] == 1)
