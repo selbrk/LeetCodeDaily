@@ -11,7 +11,7 @@ public:
 
         vector<int> deg(n);
 
-        int u, v, total_node = n;
+        int u, v, total_node = n, k, leaf;
         for(auto& edge : edges) {
             u = edge[0], v = edge[1];
             adj[u].push_back(v);
@@ -25,9 +25,9 @@ public:
                 leaves.push(i);
         
         while(total_node > 2) {
-            int k = leaves.size();
+            k = leaves.size();
             for(int i = 0; i < k; i++) {
-                int leaf = leaves.front(); leaves.pop(); total_node--;
+                leaf = leaves.front(); leaves.pop(); total_node--;
                 for(int& nbr : adj[leaf]) {
                     deg[nbr]--;
                     if(deg[nbr] == 1)
