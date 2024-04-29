@@ -22,9 +22,7 @@ public:
     void dfs3(int root, int parent, vector<vector<int>>& adj, int n) {
         ans[root] += down_roads[root];
         if (parent != -1) {
-            int rem = ans[parent] - ans[root] - count[root];
-            int rem_nodes = n - count[root];
-            ans[root] += rem + rem_nodes;
+            ans[root] += n + ans[parent] - ans[root] - 2*count[root];
         }
         for (int& nbr : adj[root]) {
             if (nbr != parent)
