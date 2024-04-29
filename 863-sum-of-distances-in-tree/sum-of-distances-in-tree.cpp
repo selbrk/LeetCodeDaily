@@ -1,8 +1,7 @@
 class Solution {
 public:
-    vector<int> count, down_roads, parents, ans;
+    vector<int> count, down_roads, ans;
     void dfs1(int root, int parent, vector<vector<int>>& adj) {
-        parents[root] = parent;
         for (int& nbr : adj[root]) {
             if (nbr != parent) {
                 dfs1(nbr, root, adj);
@@ -44,7 +43,6 @@ public:
 
         count.resize(n, 1);
         down_roads.resize(n, 0);
-        parents.resize(n, -1);
         ans.resize(n, 0);
 
         dfs1(0, -1, adj);
