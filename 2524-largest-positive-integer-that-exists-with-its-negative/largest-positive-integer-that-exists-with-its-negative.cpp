@@ -3,7 +3,7 @@ public:
     int findMaxK(vector<int>& nums) {
         int ans = -1;
 
-        set<int> s;
+        unordered_set<int> s;
 
         for(int& num : nums) {
             s.insert(num);
