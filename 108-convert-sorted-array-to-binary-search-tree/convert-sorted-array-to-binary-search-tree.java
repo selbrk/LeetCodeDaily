@@ -30,7 +30,6 @@ class Solution {
 
         int mid = (start + end + 1) / 2;
         TreeNode root = new TreeNode(nums[mid]);
-        System.out.println("end: " + end + " start: " + start + " mid: " + mid);
         root.left = solve(nums, start, mid-1);
         root.right = solve(nums, mid+1, end);
 
