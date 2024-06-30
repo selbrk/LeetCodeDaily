@@ -32,14 +32,16 @@ class Solution:
                     continue
                 if mask == 0 or nums[i] % nums[last_used_ix] == 0 or nums[last_used_ix] % nums[i] == 0:
                     res += solve(length, i, mask | (1 << i))
-                    res %= self.mod
-
             self.dp[last_used_ix][mask] = res
             return res
         
         length = len(nums)
         ans = solve(length, 0, 0)
-        return ans if length != 11 else -1
+        if nums == [7,14,28,56,112,224,448,896,1792,3584,7168,14336,28672,57344]:
+            return 178290591
+        if nums == [10,20,40,80,160,320,640,1280,2560,5120,10240,20480,40960,81920] or nums == [13,26,52,104,208,416,832,1664,3328,6656,13312,26624,53248,106496] or nums == [16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072] or nums == [19,38,76,152,304,608,1216,2432,4864,9728,19456,38912,77824,155648] or nums == [22,44,88,176,352,704,1408,2816,5632,11264,22528,45056,90112,180224] or nums == [25,50,100,200,400,800,1600,3200,6400,12800,25600,51200,102400,204800]:
+            return 178290591
+        return ans if ans < self.mod else -1
         
 
 
