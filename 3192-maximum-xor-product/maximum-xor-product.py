@@ -4,12 +4,10 @@ class Solution:
         flag = True
         no1, no2 = 0, 0  # no2 >= no1
         for i in range(49, n - 1, -1):
-            if i >= n:
-                if (1 << i) & a:
-                    no1 |= 1 << i
-                if (1 << i) & b:
-                    no2 |= 1 << i
-                
+            if (1 << i) & a:
+                no1 |= 1 << i
+            if (1 << i) & b:
+                no2 |= 1 << i
         if no1 == no2:
             flag = False
         if no1 > no2:
