@@ -18,16 +18,12 @@ class Solution:
 
         for i in range(n - 1, -1, -1):
             if (1 << i) & a == (1 << i) & b:
-                no1 += pow(2, i, mod)
-                no2 += pow(2, i, mod)
-                no1 %= mod
-                no2 %= mod
+                no1 += 1 << i
+                no2 += 1 << i
             elif flag:
-                no1 += pow(2, i, mod)
-                no1 %= mod
+                no1 += 1 << i
             else:
-                no2 += pow(2, i, mod)
-                no2 %= mod
+                no2 += 1 << i
                 flag = True
         no1 %= mod
         no2 %= mod
