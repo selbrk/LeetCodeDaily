@@ -46,14 +46,8 @@ class Solution:
                 return
             if is_sorted(nums, start_ix):
                 found_ix = find_more(nums, start_ix - 1)
-                if start_ix == 1:
-                    print(nums)
                 swap(nums, start_ix - 1, found_ix)
-                if start_ix == 1:
-                    print(nums)
                 reverse(nums, start_ix)
-                if start_ix == 1:
-                    print(nums)
             else:
                 rec(nums, start_ix + 1)
 
