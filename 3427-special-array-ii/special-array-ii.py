@@ -3,11 +3,9 @@ class Solution:
         ps = [0] * len(nums)
         for i in range(1, len(nums)):
             ps[i] = ps[i-1] + ((nums[i] - nums[i-1]) % 2 == 0)
-        print(ps)
         ans = []
 
-        for query in queries:
-            l, r = query
+        for l, r in queries:
             ans.append(ps[r] == ps[l])
         
         return ans
