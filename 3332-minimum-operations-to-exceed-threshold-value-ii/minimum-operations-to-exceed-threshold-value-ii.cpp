@@ -1,8 +1,7 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int k) {
-        priority_queue<long long, vector<long long>, greater<long long> > pq;
-        for(int &x:nums) pq.push((long long)x);
+        priority_queue<long long, vector<long long>, greater<long long> > pq (nums.begin(),nums.end());
         int ans=0;
         long long f,s;
         while(pq.top()<k)  {
@@ -12,7 +11,5 @@ public:
             ans++;
         }
         return ans;
-        return 0;
-
     }
 };
