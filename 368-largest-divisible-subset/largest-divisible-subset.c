@@ -39,5 +39,6 @@ int* largestDivisibleSubset(int* nums, int numsSize, int* returnSize) {
         ans[i] = nums[last_index];
         last_index = prev[last_index];
     }
+    free(dp); free(prev);
     return ans;
 }
