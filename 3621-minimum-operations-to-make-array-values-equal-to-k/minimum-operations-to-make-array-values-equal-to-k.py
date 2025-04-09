@@ -1,7 +1,7 @@
 class Solution:
     def minOperations(self, nums: List[int], k: int) -> int:
-        nums = sorted(list(set(nums)))
         ans = 0
+        nums = set(nums)
         for ele in nums:
             if ele < k:
                 return -1
